@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Capture Alert",
+  "version": "1.0.0",
+  "description": "Shows a notification to stop screen recording or capture when you open sensitive links.",
+  "permissions": ["tabs", "notifications"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Capture Alert"
+  },
+  "icons": {
+    "128": "icon128.png"
+  }
+}
