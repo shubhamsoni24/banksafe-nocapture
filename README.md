@@ -1,10 +1,10 @@
-# 🔔 Capture Alert
+# 🔔 BankSafe NoCapture
 
 A lightweight Chrome extension (Manifest V3) that warns you to **stop screen recording or screen capture** whenever you open a banking website.
 
 When you open or switch to a tab whose link is a banking site, a persistent Chrome notification appears:
 
-> **Screen capture alert**
+> **BankSafe NoCapture**
 > You opened a banking site (www.sbicard.com). Stop any screen recording or screen capture now.
 
 Non-banking sites never trigger anything.

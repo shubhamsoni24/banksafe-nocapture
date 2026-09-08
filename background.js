@@ -102,7 +102,7 @@ async function evaluateTab(tabId) {
   if (notified.get(tabId) === url) return;
 
   notified.set(tabId, url);
-  chrome.notifications.create(`capture-alert-${tabId}-${Date.now()}`, {
+  chrome.notifications.create(`banksafe-nocapture-${tabId}-${Date.now()}`, {
     type: "basic",
     iconUrl: "icon128.png",
     title: "Screen capture alert",
