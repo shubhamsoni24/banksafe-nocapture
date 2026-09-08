@@ -113,9 +113,9 @@ async function evaluateTab(tabId) {
 
   chrome.notifications.create(`banksafe-nocapture-${tabId}-${Date.now()}`, {
     type: "basic",
-    iconUrl: "icon128.png",
-    title: "Screen capture alert",
-    message: `You opened a banking site (${matched}). Stop any screen recording or screen capture now.`,
+    iconUrl: "icons/icon128.png",
+    title: "⚠️ Banking site detected",
+    message: "A banking or financial site is open. Please ensure all screen recording and screen capture tools are turned off before you proceed.",
     priority: 2,
     requireInteraction: true,
   });

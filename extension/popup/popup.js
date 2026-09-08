@@ -68,8 +68,8 @@ async function init() {
     if (matched) {
       statusCard.className = "status-card warning";
       statusIcon.textContent = "⚠️";
-      statusText.textContent = "Banking site detected!";
-      statusDetail.textContent = matched;
+      statusText.textContent = "Banking site detected";
+      statusDetail.textContent = "Ensure screen recording is off";
     } else {
       statusCard.className = "status-card safe";
       statusIcon.textContent = "✅";
