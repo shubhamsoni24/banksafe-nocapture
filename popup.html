@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>BankSafe NoCapture</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icon128.png" alt="Logo" class="logo">
+      <h1>BankSafe <span class="accent">NoCapture</span></h1>
+    </header>
+
+    <div class="status-card" id="statusCard">
+      <div class="status-icon" id="statusIcon">🔍</div>
+      <div class="status-text" id="statusText">Checking...</div>
+      <div class="status-detail" id="statusDetail"></div>
+    </div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Protection</span>
+      <label class="switch">
+        <input type="checkbox" id="enableToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-value" id="alertCount">0</span>
+        <span class="stat-label">Alerts triggered</span>
+      </div>
+    </div>
+
+    <footer>
+      <a href="#" id="optionsLink">⚙️ Settings</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

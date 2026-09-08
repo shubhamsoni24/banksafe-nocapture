@@ -1,15 +1,20 @@
 {
   "manifest_version": 3,
   "name": "BankSafe NoCapture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shows a notification to stop screen recording or capture when you open sensitive links.",
-  "permissions": ["tabs", "notifications"],
+  "permissions": ["tabs", "notifications", "storage", "activeTab"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "BankSafe NoCapture"
+    "default_title": "BankSafe NoCapture",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon128.png"
+    }
   },
+  "options_page": "options.html",
   "icons": {
     "128": "icon128.png"
   }

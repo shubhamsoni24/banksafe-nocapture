@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="options.css">
+  <title>BankSafe NoCapture — Settings</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icon128.png" alt="Logo" class="logo">
+      <div>
+        <h1>BankSafe <span class="accent">NoCapture</span></h1>
+        <p class="subtitle">Manage your custom bank keywords</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Built-in Keywords <span class="badge" id="builtinCount">0</span></h2>
+      <p class="hint">These are always active and cannot be removed. Domains containing "bank" or "card" are also detected automatically.</p>
+      <div class="tag-list" id="builtinTags"></div>
+    </section>
+
+    <section class="card">
+      <h2>Your Custom Keywords <span class="badge" id="customCount">0</span></h2>
+      <p class="hint">Add domain keywords to detect additional sites. For example, adding "mybank" will match mybank.com, portal.mybank.com, etc.</p>
+
+      <div class="input-row">
+        <input type="text" id="keywordInput" placeholder="Enter a keyword (e.g. paypal)" autocomplete="off">
+        <button id="addBtn">Add</button>
+      </div>
+
+      <div class="tag-list" id="customTags">
+        <p class="empty-msg" id="emptyMsg">No custom keywords added yet.</p>
+      </div>
+    </section>
+
+    <section class="card actions-card">
+      <h2>Data Management</h2>
+      <div class="btn-row">
+        <button id="exportBtn" class="btn-secondary">📋 Export Keywords</button>
+        <button id="importBtn" class="btn-secondary">📥 Import Keywords</button>
+        <button id="resetBtn" class="btn-danger">🗑️ Remove All Custom</button>
+      </div>
+      <textarea id="importExportArea" class="import-export" placeholder='Paste JSON array here, e.g. ["paypal", "venmo"]' style="display:none;"></textarea>
+      <button id="importConfirmBtn" class="btn-primary" style="display:none;">Confirm Import</button>
+    </section>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,10 +1,10 @@
-# 🔔 BankSafe NoCapture
+# 🛡️ BankSafe NoCapture
 
 A lightweight Chrome extension (Manifest V3) that warns you to **stop screen recording or screen capture** whenever you open a banking website.
 
 When you open or switch to a tab whose link is a banking site, a persistent Chrome notification appears:
 
-> **BankSafe NoCapture**
+> **Screen capture alert**
 > You opened a banking site (www.sbicard.com). Stop any screen recording or screen capture now.
 
 Non-banking sites never trigger anything.
@@ -17,8 +17,12 @@ Non-banking sites never trigger anything.
 - 💳 Catches card portals too (`*.sbicard.com`, etc.) — every subdomain included
 - 🔕 One alert per URL per tab — no spam while you scroll or switch away and back
 - ⏸️ Notification **stays on screen** until dismissed (with sound)
-- 🔒 100% private — works completely offline, stores nothing, sends nothing anywhere
-- ⚡ Tiny (~1 KB of code), zero dependencies, no UI clutter
+- 🟢 **Toolbar badge** — green when on a banking site, grey when disabled
+- 🎛️ **Popup** — toggle protection on/off, see current site status & alert count
+- ⚙️ **Options page** — add/remove custom bank keywords without editing code
+- 📋 **Import/Export** — backup and share your custom keyword list as JSON
+- 🔒 100% private — works completely offline, stores nothing externally
+- ⚡ Tiny, zero dependencies, no UI clutter
 
 ## 🧠 How detection works
 
@@ -28,7 +32,7 @@ Non-banking sites never trigger anything.
 |------|---------|----------|
 | 1. Contains `bank` | Any domain with "bank" in it | `hdfcbank.com`, `pnb.bank.in`, `bankofbaroda.in`, `netbanking.*` |
 | 2. Contains `card` | Any domain with "card" in it | `www.sbicard.com`, `secure.sbicard.com` |
-| 3. Keyword list | Known bank domains without "bank"/"card" | `sbi.co.in`, `kotak.com`, `indusind.com`, `chase.com` |
+| 3. Keyword list | Built-in + custom bank domains | `sbi.co.in`, `kotak.com`, `indusind.com`, `chase.com` |
 
 Keyword matching runs on **hostname label boundaries**, so `iob.in` triggers but lookalikes like `ioby.org` don't.
 
@@ -39,6 +43,7 @@ Keyword matching runs on **hostname label boundaries**, so `iob.in` triggers but
 - **Small finance & payments banks** — AU, Equitas, Ujjivan, IPPB, Airtel Payments Bank...
 - **All 28 regional rural banks**
 - **Foreign banks operating in India** — Citi, HSBC, Standard Chartered, Deutsche, Amex...
+- **+ any custom keywords** you add through the options page
 
 > 💡 RBI is migrating Indian banks to `.bank.in` domains (`sbi.bank.in`, `axis.bank.in`, ...). Those are caught automatically by Rule 1 — keywords only matter for legacy domains like `kotak.com`.
 
@@ -52,28 +57,21 @@ Keyword matching runs on **hostname label boundaries**, so `iob.in` triggers but
 
 ## ⚙️ Customize
 
+### From the popup
+Click the 🛡️ toolbar icon to:
+- **Toggle protection** on/off
+- See if the current tab is a banking site
+- Check how many alerts have been triggered
+
+### From the options page
+Right-click the toolbar icon → **Options**, or click ⚙️ in the popup:
+- **Add custom keywords** — type a domain keyword and press Enter
+- **Remove keywords** — click the × on any custom tag
+- **Import/Export** — share keywords as JSON
+- **Reset** — remove all custom keywords (built-in list stays)
+
+### From the code
 Edit `background.js`, then hit the ↻ reload icon on the extension card at `chrome://extensions`.
-
-**Add your bank** — append the identifying part of its domain to `BANK_KEYWORDS`:
-
-```js
-const BANK_KEYWORDS = [
-  // ...existing entries...
-  "mybankname",   // matches mybankname.com, portal.mybankname.com, ...
-];
-```
-
-**Alert on every website** — replace the first line of `matchBank()`:
-
-```js
-if (host) return host;
-```
-
-**Remove the broad `card` rule** (stops greeting-card shops from triggering) — change Rule 2 back to bank-only:
-
-```js
-if (host.includes("bank")) return host;
-```
 
 ## 🔒 Privacy & Security
 
@@ -81,7 +79,7 @@ if (host.includes("bank")) return host;
 |----------|--------|
 | Does it read page content? | ❌ Never — no content scripts |
 | Where does my browsing data go? | ❌ Nowhere — zero network calls in the entire codebase |
-| What is stored? | ❌ Nothing — no storage permissions at all |
+| What is stored? | Only your toggle state and custom keywords (locally) |
 | Why the `tabs` permission? | Required to read tab URLs for matching. It cannot modify pages |
 
 ## ⚠️ Limitations
@@ -95,16 +93,29 @@ This is a **reminder, not a security control**. It won't trigger for:
 ## 📁 Project structure
 
 ```
-capture-alert/
+banksafe-nocapture/
 ├── manifest.json    # Extension config (MV3, permissions)
-├── background.js    # Detection rules + notification logic
+├── background.js    # Detection rules + notification + badge logic
+├── popup.html       # Extension popup UI
+├── popup.js         # Popup logic (status, toggle, stats)
+├── popup.css        # Popup styles (dark theme)
+├── options.html     # Settings page UI
+├── options.js       # Settings logic (keyword CRUD, import/export)
+├── options.css      # Settings styles
 ├── icon128.png      # Toolbar/notification icon
+├── index.html       # Landing page (for Vercel)
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
+## 🌐 Website
+
+Visit the landing page: [banksafe-nocapture.vercel.app](https://banksafe-nocapture.vercel.app)
+
 ## 🤝 Contributing
 
-Found a bank domain that isn't detected? Please open an issue or PR — just add one line to `BANK_KEYWORDS`.
+Found a bank domain that isn't detected? Please open an issue or PR — just add one line to `BANK_KEYWORDS` in `background.js` or use the options page.
 
 ## 📄 License
 

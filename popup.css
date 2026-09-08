@@ -1,0 +1,178 @@
+/* ── BankSafe NoCapture Popup ── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+.container {
+  padding: 16px;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+}
+
+header h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.accent {
+  color: #00d26a;
+}
+
+/* Status Card */
+.status-card {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 16px;
+  border: 1px solid #0f3460;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.status-card.safe {
+  border-color: #00d26a;
+  background: #0d2818;
+}
+
+.status-card.warning {
+  border-color: #ff6b35;
+  background: #2d1810;
+}
+
+.status-card.disabled {
+  border-color: #555;
+  background: #1a1a1a;
+}
+
+.status-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.status-detail {
+  font-size: 11px;
+  color: #888;
+  word-break: break-all;
+}
+
+/* Toggle Row */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #16213e;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #555;
+  border-radius: 24px;
+  transition: background 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.switch input:checked + .slider {
+  background: #00d26a;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* Stats */
+.stats-row {
+  background: #16213e;
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #00d26a;
+  display: block;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+}
+
+footer a {
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #00d26a;
+}
